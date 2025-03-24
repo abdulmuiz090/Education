@@ -1,0 +1,354 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  
+  h1, h2, h3 {
+    margin: 0;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+/* Navbar Styles */
+.navbar {
+  background: #333;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.navbar nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  margin-right: 35%;
+}
+.nav-list .auth-links1 {
+  position: absolute;
+  margin-left: auto; /* Pushes the Login and Sign Up to the right */
+  font-style: italic; /* Makes the text italic */
+ left: 87%; 
+}
+.nav-list .auth-links {
+  position: absolute;
+  margin-left: auto; /* Pushes the Login and Sign Up to the right */
+  font-style: italic; /* Makes the text italic */
+ left: 92%; 
+}
+
+.nav-list li {
+  margin: 0;
+}
+
+.nav-list a {
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-list a:hover {
+  background: #4CAF50;
+}
+
+.toggle-btn {
+  display: none;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 20px;
+  }
+
+  .nav-list.active {
+    display: flex;
+  }
+
+  .toggle-btn {
+    display: block;
+  }
+  .nav-list .auth-links1 {
+    position: absolute;
+    margin-left: auto; /* Pushes the Login and Sign Up to the right */
+    font-style: italic; /* Makes the text italic */
+    top: 87%;
+    left: 70; 
+  }
+  .nav-list .auth-links {
+    position: absolute;
+    margin-left: auto; /* Pushes the Login and Sign Up to the right */
+    font-style: italic; /* Makes the text italic */
+   top: 87%; 
+   left: 65%;
+  }
+}
+
+  
+  
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .hero .cta-btn {
+    background: #FF9800;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+  }
+  
+  /* Services Section */
+  .service {
+    padding: 50px 20px;
+    background: #f9f9f9;
+  }
+  
+  .service-list {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .service-item {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+  }
+  
+  /* Slideshow Section */
+  .slideshow {
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .slides {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide {
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .slide.active {
+    display: block;
+  }
+  
+  /* About Us Section */
+  .about-us {
+    padding: 50px 20px;
+    background: #fff;
+  }
+  
+  .team {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .team-member {
+    text-align: center;
+    width: 50%;
+  }
+  
+  .team-member img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  /* Our Work Section */
+  .work {
+    padding: 50px 20px;
+    background: #f9f9f9;
+  }
+  
+  .work-slides {
+    display: flex;
+    overflow-x: scroll;
+  }
+  
+  .work-item {
+    margin: 10px;
+    text-align: center;
+    flex-shrink: 0;
+    width: 300px;
+  }
+  
+  .work-item img {
+    border-radius: 5px;
+  }
+  
+  .learn-more {
+    background: #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  /* Subscribe Section */
+  .subscribe {
+    padding: 50px 20px;
+    text-align: center;
+    background: #2E7D32;
+    color: white;
+  }
+  
+  .subscribe form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .subscribe input {
+    padding: 10px;
+    width: 300px;
+  }
+  
+  .subscribe button {
+    background: #FF9800;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Footer */
+  .footer {
+    background: #333;
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+  }
+  
+  .footer-links a {
+    margin: 0 10px;
+    color: #FF9800;
+  }
+ 
+  @media screen and (max-width: 740px) {
+    /* Services Section */
+ 
+  .service-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+   /* About Us Section */
+ 
+  .team {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .nav-list
+  {
+    margin-right: 0%;
+  }
+  }
+
+
+  /*bootstrap styling */
+  
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+ 
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+ 
+ 
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+
+ 
+ 

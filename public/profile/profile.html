@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <style>
+
+        .image{
+            justify-self: center;
+            align-self: center;
+        }
+        .image img{
+            border: 2px solid greenyellow;
+        }
+    </style>
+    <header>
+        <h1>Welcome to Your Profile</h1>
+    </header>
+    <main>
+        <a style="text-decoration: none; float: left;" href="/dashboard/dashboard.html">Go back__...</a>
+        <div class="image" id="profile-preview">
+           
+            <h2>My Profile Picture</h2>
+            
+            <img id="profileImage" src="" alt="Profile Picture" style="max-width: 170px; height: 170px; border-radius: 50%;">
+        </div>
+        <form id="profileForm" enctype="multipart/form-data">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" name="name" required>
+            <br>
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" name="email" required>
+            <br>
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio"></textarea>
+            <br>
+            <label for="avatar">Upload Profile Picture:</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*">
+            <br>
+            <button type="submit">Update Profile</button>
+        </form>
+        
+    </main>
+    <script src="profile.js"></script>
+</body>
+</html>

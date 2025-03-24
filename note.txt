@@ -1,0 +1,449 @@
+MY HTML FIRST
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to the Teaching Website</h1>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const response = await fetch('/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const result = await response.json();
+            console.log(result);
+        });
+    </script>
+</body>
+</html>
+
+
+MY FIRST server.js
+
+
+require('dotenv').config();
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const connectDB = require('./config/db');
+const userRoutes = require('./routes/userRoutes');
+
+const app = express();
+
+// Database Connection
+connectDB();
+
+// Middleware
+app.use(express.json());
+app.use(express.static('public'));
+
+// Routes
+app.use('/users', userRoutes);
+
+// Error Handling
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
+});
+
+// Server Start
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+
+const users = [
+    { id: 1, email: 'test@example.com', password: '$2a$10$5rEvnKNptW0IS9yFZiKCh.m1jbQ1xPws6y/KfCl6osdfv8hbFL3Fm' } // Password is 'password'
+];
+
+// Sign-Up Route
+router.post('/signup', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    const userExists = users.find(user => user.email === email);
+    if (userExists) {
+        return res.status(400).send('Email already exists');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = { id: users.length + 1, name, email, password: hashedPassword };
+    users.push(newUser);
+
+    res.status(201).send('User created successfully');
+});
+
+// Login Route
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = users.find(user => user.email === email);
+    if (!user) {
+        return res.status(400).send('User not found');
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+        return res.status(400).send('Invalid credentials');
+    }
+
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    res.status(200).json({ message: 'Login successful', token });
+});
+
+module.exports = router;
+
+
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    try {
+        const response = await fetch('/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem('jwtToken', data.token);  // Store the JWT token
+            window.location.href = '/dashboard/';  // Redirect to dashboard after successful sign up
+        } else {
+            const errorText = await response.text(); // Get server error message
+            alert(`Sign up failed: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+
+router.get('/dashboard', (req, res) => {
+    const token = req.headers['authorization'];
+
+    if (!token) {
+        return res.status(403).send('Access denied. No token provided.');
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).send('Invalid token');
+        }
+
+        res.status(200).send(`Welcome to the dashboard, ${decoded.email}`);
+    });
+});
+
+
+ // Login Form Submission
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (response.ok) {
+          alert('login successful');
+            const data = await response.json();
+            localStorage.setItem('jwtToken', data.token);  // Store the JWT token
+            window.location.href = '/dashboard/';  // Redirect to dashboard after successful login
+        } else {
+            const errorText = await response.text(); // Get server error message
+            alert(`Login failed: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+    
+    // Sign-Up Form Submission
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    try {
+        const response = await fetch('/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        if (response.ok) {
+          alert('sign up successful');
+            const data = await response.json();
+            localStorage.setItem('jwtToken', data.token);  // Store the JWT token
+            window.location.href = '/dashboard/';  // Redirect to dashboard after successful sign up
+            
+        } else {
+            const errorText = await response.text(); // Get server error message
+            alert(`Sign up failed: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+  </script>
+
+
+
+
+
+require('dotenv').config();
+const express = require('express');
+const http = require('http'); // Import http to create the server
+const { Server } = require('socket.io'); // Import Socket.IO
+const connectDB = require('./config/db');
+const path = require('path');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const app = express();
+const fs = require('fs');
+
+
+
+
+// Database Connection
+connectDB();
+
+// Middleware
+app.use(express.json());
+app.use(express.static('public'));
+
+app.use('/uploads', express.static('/uploads'));
+
+// Ensure the uploads folder exists
+const uploadsFolderPath = path.join(__dirname, '/uploads');
+if (!fs.existsSync(uploadsFolderPath)) {
+    fs.mkdirSync(uploadsFolderPath, { recursive: true });
+    console.log('Uploads folder created.');
+}
+
+// Routes
+app.use('/api', authRoutes);
+app.use('/users', userRoutes);
+
+
+// Dashboard Route
+app.get('/dashboard/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/dashboard/dashboard.html')); // Correct path
+});
+
+
+// Create an HTTP server and attach Socket.IO
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: '*', // Allow all origins for development; restrict in production
+        methods: ['GET', 'POST'],
+    },
+});
+
+app.get('/profile/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/profile/profile.html'));
+});
+
+// Socket.IO Logic
+io.on('connection', (socket) => {
+    console.log(`New client connected: ${socket.id}`);
+
+    // Join user-specific room (e.g., for notifications)
+    socket.on('joinRoom', (userId) => {
+        socket.join(userId);
+        console.log(`User with ID ${userId} joined their room`);
+    });
+
+    // Handle notification emission
+    socket.on('sendNotification', ({ userId, message }) => {
+        io.to(userId).emit('notification', message);
+        console.log(`Notification sent to user ${userId}: ${message}`);
+    });
+
+    // Handle client disconnection
+    socket.on('disconnect', () => {
+        console.log(`Client disconnected: ${socket.id}`);
+    });
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+const jwt = require('jsonwebtoken');
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const multer = require('multer');
+const path = require('path'); // Import the path module
+const authenticate = require('../middlewares/authenticate');
+const userModel = require('../models/userModel');
+const router = express.Router();
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadsFolderPath = path.join(__dirname, '..', 'uploads'); // Corrected path
+        cb(null, uploadsFolderPath);
+        console.log(`Uploading file to: ${uploadsFolderPath}`);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        cb(null, `${uniqueSuffix}-${file.originalname}`);
+        console.log(`Uploaded file path: /uploads/${uniqueSuffix}-${file.originalname}`);
+    },
+});
+
+
+// ** Sign-Up Route **
+router.post('/signup', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    try {
+        const userExists = await userModel.findOne({ email });
+        if (userExists) {
+            return res.status(400).json({ message: 'Email already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await userModel.create({
+            name,
+            email,
+            password: hashedPassword,
+            profile: {}, // Initialize empty profile
+        });
+
+        const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(201).json({
+            message: 'User created successfully',
+            token,
+            user: {
+                id: newUser._id,
+                name: newUser.name,
+                email: newUser.email,
+                profile: newUser.profile,
+            },
+        });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', error: err.message });
+    }
+});
+
+// ** Login Route **
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({
+            message: 'Login successful',
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                profile: user.profile,
+            },
+        });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', error: err.message });
+    }
+});
+
+// ** Profile Update Route **
+router.put('/profile', authenticate, upload.single('avatar'), async (req, res) => {
+    const { name, bio } = req.body;
+
+    if (!name || !bio) {
+        console.error('Missing required fields: name or bio');
+        return res.status(400).json({ message: 'Name and bio are required' });
+    }
+
+    const updatedData = { name, 'profile.bio': bio };
+    if (req.file) {
+        updatedData['profile.avatar'] = `/uploads/${req.file.filename}`;
+        console.log(`Avatar path to be saved: /uploads/${req.file.filename}`);
+    }
+
+    try {
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.user._id,
+            updatedData,
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            console.error('User not found');
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Fetch the updated user to send back the complete data
+        const refreshedUser = await userModel.findById(req.user._id).select('-password');
+        console.log(`Updated user data: ${JSON.stringify(refreshedUser)}`);
+        
+        res.status(200).json({ message: 'Profile updated successfully', user: refreshedUser });
+    } catch (err) {
+        console.error('Error updating profile:', err);
+        res.status(500).json({ message: 'Error updating profile', error: err.message });
+    }
+});
+
+// ** Dashboard Route (Example Protected Route) **
+router.get('/dashboard', authenticate, (req, res) => {
+    res.status(200).send(`Welcome to the dashboard, ${req.user.email}`);
+});
+
+module.exports = router;
+
+
+
+<ul class="nav-list">
+        <li><a href="/pages/home.html">Home</a></li><h1 style="color: white;">/</h1>
+        <li><a href="/dashboard/dashboard.html"> My Dashboard</a></li>
+      </ul>

@@ -1,0 +1,202 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  section {
+    padding: 50px 20px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: url('hero-background.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  .hero .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Mission & Vision Section */
+  .mission-vision {
+    background: #f9f9f9;
+  }
+  
+  .mission-vision .content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .mission-vision blockquote {
+    font-style: italic;
+    color: #4CAF50;
+  }
+  
+  /* Team Section */
+  .team {
+    background: #fff;
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .team-member {
+    width: 35%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .team-member img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .profile h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .social-links a {
+    margin: 0 10px;
+    color: #4CAF50;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  /* Journey Section */
+  .journey {
+    background: #e3f2fd;
+  }
+  
+  .timeline {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .timeline-item {
+    width: 40%;
+    align-items: center;
+    justify-items: center;
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Testimonials Section */
+  .testimonials {
+    background: #f1f1f1;
+  }
+  
+  .testimonial-slider {
+    display: flex;
+    overflow: hidden;
+    justify-content: space-around;
+  }
+  
+  .testimonial {
+    flex: 1;
+    margin: 0 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .testimonial p {
+    font-style: italic;
+  }
+  
+  /* Contact CTA Section */
+  .contact-cta {
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-btn {
+    background: #FF9800;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-btn:hover {
+    background: #ff5722;
+  }
+  
+  /* Footer */
+  footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+  }
+  
+  footer p{
+   margin: 0;
+}
+@media screen and (max-width: 740px) {
+   /* Team Section */
+   .team {
+    background: #fff;
+  }
+  
+  .team-members {
+    display: block;
+    align-items: center;
+    justify-items: center;
+    justify-self: center;
+    align-self: center;
+    gap: 30px;
+  }
+  
+  .team-member {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}

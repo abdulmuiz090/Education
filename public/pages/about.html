@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="stylesheet" href="/pages/css/about.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/android-chrome-512x512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/apple-touch-icon.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <style>
+  /* Navbar Styles */
+.navbar {
+  background: #333;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.navbar nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  margin-right: 35%;
+}
+.nav-list .auth-links1 {
+  position: absolute;
+  margin-left: auto; /* Pushes the Login and Sign Up to the right */
+  font-style: italic; /* Makes the text italic */
+ left: 87%; 
+}
+.nav-list .auth-links {
+  position: absolute;
+  margin-left: auto; /* Pushes the Login and Sign Up to the right */
+  font-style: italic; /* Makes the text italic */
+ left: 92%; 
+}
+
+.nav-list li {
+  margin: 0;
+}
+
+.nav-list a {
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-list a:hover {
+  background: #4CAF50;
+}
+
+.toggle-btn {
+  display: none;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 20px;
+  }
+
+  .nav-list.active {
+    display: flex;
+  }
+
+  .toggle-btn {
+    display: block;
+  }
+  .nav-list .auth-links1 {
+    position: absolute;
+    margin-left: auto; /* Pushes the Login and Sign Up to the right */
+    font-style: italic; /* Makes the text italic */
+    top: 87%;
+    left: 70; 
+  }
+  .nav-list .auth-links {
+    position: absolute;
+    margin-left: auto; /* Pushes the Login and Sign Up to the right */
+    font-style: italic; /* Makes the text italic */
+   top: 87%; 
+   left: 65%;
+  }
+}
+  </style>
+  
+  <header class="navbar">
+    <nav>
+      <h2 style="color: lightgreen; right: 0%;">LEARNING FIELD</h2>
+      <ul class="nav-list" >
+        <li><a href="/index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="/index.html#contact">Contact Us</a></li>
+      <li  class="auth-links1"><a href="/signup/signup.html">Login</a></li>
+      <li  class="auth-links"><a href="/signup/signup.html">Sign Up</a></li>
+      <li><a href="/signup/signup.html">Dashboard</a></li>
+      </ul>
+      <button class="toggle-btn" aria-label="Toggle Navigation">
+        &#9776;
+      </button>
+    </nav>
+  </header>
+  <script>
+  const toggleBtn = document.querySelector('.toggle-btn');
+  const navList = document.querySelector('.nav-list');
+  
+  toggleBtn.addEventListener('click', () => {
+  navList.classList.toggle('active');
+  });
+  </script>
+  
+<style>
+  .hero{
+    background: url(/image/Premium\ Photo\ _\ University\ students\ group\ and\ friends\ portrait\ at\ park\ outdoors\ ready\ to\ start\ learning\ business\ management\ Scholarship\ books\ education\ and\ happy\ people\ man\ and\ women\ standing\ together\ at\ college.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Meet the Team Dedicated to Your Success!</h1>
+      <p>We’re a passionate team of professionals committed to empowering students through personalized learning experiences.</p>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section -->
+  <section class="mission-vision">
+    <h2>Our Mission & Vision</h2>
+    <div class="content">
+      <div class="container-fluid bg-grey">
+        <div class="row">
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-globe logo slideanim"></span>
+          </div>
+          <div class="col-sm-8">
+            <h2>Our Values</h2><br>
+            <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+            <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+      </div>
+      <blockquote>"Learning is not a one-time event; it's a lifelong journey." — Abdul Muiz</blockquote>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team">
+    <h2 >Our Team</h2>
+    <div class="team-members">
+      <div class="team-member">
+        <img src="team1.jpg" alt="Abdul Muiz">
+        <div class="profile">
+          <h3>Abdul Muiz</h3>
+          <p>Web Developer & UI Designer</p>
+          <p>Abdul specializes in building modern, user-friendly websites that drive success. He has extensive experience in front-end and back-end development, ensuring that each project is smooth and effective.</p>
+          <div class="social-links">
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="mailto:abdul@example.com">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="team2.jpg" alt="Team Member 2">
+        <div class="profile">
+          <h3>Jane Doe</h3>
+          <p>Graphic Designer</p>
+          <p>With an eye for detail, Jane creates stunning visual designs that capture attention and communicate ideas effectively. Her expertise helps bring creative visions to life.</p>
+          <div class="social-links">
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="mailto:jane@example.com">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="team3.jpg" alt="Team Member 3">
+        <div class="profile">
+          <h3>John Smith</h3>
+          <p>Content Creator</p>
+          <p>John crafts engaging content that resonates with the audience. From blog posts to course materials, his work connects students to learning in meaningful ways.</p>
+          <div class="social-links">
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="mailto:john@example.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section class="journey">
+    <h2>Our Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>2020</h3>
+        <p>Started tutoring students in web development and design.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2021</h3>
+        <p>Launched our online workshops for a wider reach.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2023</h3>
+        <p>Reached over 500+ students across different regions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>What Our Students Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial">
+        <p>"The team helped me grasp complex topics quickly and effectively. I wouldn't be where I am today without them!" — Student A</p>
+      </div>
+      <div class="testimonial">
+        <p>"Their tutoring method is personalized, and the results speak for themselves. I recommend them to anyone." — Student B</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA Section -->
+  <section class="contact-cta">
+    <h2>Want to work with us?</h2>
+    <p>If you're looking for guidance or want to collaborate, don’t hesitate to reach out!</p>
+    <a href="/index.html#contact" class="cta-btn">Get in Touch</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Our Team. All rights reserved.</p>
+  </footer>
+
+  <script src="/pages/js/about.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team Homepage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/android-chrome-512x512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/apple-touch-icon.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/pages/css/contact.css">
+  
+</head>
+<body>
+
+  <header class="navbar">
+    <nav>
+      <h2 style="color: lightgreen;">LEARNING FIELD</h2>
+      <ul class="nav-list">
+        <li><a href="/pages/home.html">Home</a></li><h1 style="color: white;">/</h1>
+        <li><a href="/dashboard/dashboard.html"> My Dashboard</a></li>
+      </ul>
+      <button class="toggle-btn" aria-label="Toggle Navigation">
+        &#9776;
+      </button>
+    </nav>
+  </header>
+<script>
+  const toggleBtn = document.querySelector('.toggle-btn');
+const navList = document.querySelector('.nav-list');
+
+toggleBtn.addEventListener('click', () => {
+  navList.classList.toggle('active');
+});
+</script>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Empowering Students Through Knowledge</h1>
+    <p>Join us and explore a world of learning opportunities.</p>
+    <a href="#services" class="cta-btn">Learn More</a>
+  </header>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>Tutoring</h3>
+        <p>One-on-one and group learning sessions.</p>
+      </div>
+      <div class="service-item">
+        <h3>Workshops</h3>
+        <p>Interactive workshops for skill development.</p>
+      </div>
+      <div class="service-item">
+        <h3>Consultations</h3>
+        <p>Guidance tailored to individual needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slideshow Section -->
+  <section class="slideshow">
+    <h2>What We Offer</h2>
+    <div class="slides">
+      <div class="slide active">
+        <h3>Quality Tutoring</h3>
+        <p>Our tutoring services are personalized and impactful.</p>
+      </div>
+      <div class="slide">
+        <h3>Effective Workshops</h3>
+        <p>Hands-on workshops that inspire learning.</p>
+      </div>
+      <div class="slide">
+        <h3>Success Stories</h3>
+        <p>See the impact of our work on students' lives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about-us" class="about-us">
+    <h2>About Us</h2>
+    <div class="team">
+      <div class="team-member">
+        <img src="team1.jpg" alt="Team Member 1">
+        <h3>Abdul Muiz</h3>
+        <p>Web Developer & UI Designer</p>
+      </div>
+      <div class="team-member">
+        <img src="team2.jpg" alt="Team Member 2">
+        <h3>Member 2</h3>
+        <p>Graphic Designer</p>
+      </div>
+      <div class="team-member">
+        <img src="team3.jpg" alt="Team Member 3">
+        <h3>Member 3</h3>
+        <p>Content Creator</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="work">
+    <h2>Our Work</h2>
+    <div class="work-slides">
+      <div class="work-item">
+        <img src="image/How to set up Google Meet on your computer_ - Kimbley IT.jpeg" alt="Project 1">
+        <a href="project1.html" class="learn-more">Learn More</a>
+      </div>
+      <!-- Add more project items as needed -->
+      <div class="work-item">
+        <img src="image/KOACI.jpeg" alt="Project 1">
+        <a href="project1.html" class="learn-more">Learn More</a>
+      </div>
+      <div class="work-item">
+        <img src="image/Premium Photo _ Young multiethnic students using computer inside university classroom.jpeg" alt="Project 1">
+        <a href="project1.html" class="learn-more">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+
+   <!-- Contact Us Container -->
+   <div class="contact-container">
+    <h1>Contact Us</h1>
+
+    <!-- Contact Form -->
+    <form id="contact-form" action="https://formspree.io/f/mnnnobnv" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="subject">Subject</label>
+      <select id="subject" name="subject">
+        <option value="support">Support</option>
+        <option value="inquiry">General Inquiry</option>
+        <option value="feedback">Feedback</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <!-- Captcha (optional) -->
+      <div class="captcha">
+        <label for="captcha">Please verify you're human</label>
+        <input type="text" id="captcha" name="captcha" placeholder="Enter captcha" required>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+      <h3>Our Contact Information</h3>
+      <p><strong>Phone:</strong> +234 9065478597</p>
+      <p><strong>Email:</strong> crystalbridge.career@gmail.com</p>
+      <p><strong>Address:</strong> 1234 Street Name, City, Country</p>
+
+      <!-- Social Media Links -->
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      </div>
+
+      <!-- Google Map Embed (Optional) -->
+      <div class="map">
+        <h3>Our Location</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscribe Section -->
+  <section class="subscribe">
+    <h2>Stay Updated</h2>
+    <form>
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 Our Team. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about-us">About Us</a>
+      <a href="#work">Our Work</a>
+    </div>
+  </footer>
+
+  <script src="/pages/js/contact.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Notifications</title>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #notifications {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .notification {
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download Notifications</h1>
+    <div id="notifications">
+        <h3>Notifications</h3>
+        <div id="notificationList"></div>
+    </div>
+
+    <script>
+        // Connect to the Socket.IO server
+        const socket = io('http://localhost:3000'); // Update URL if needed
+
+        // Join a specific room (e.g., user ID for personalized notifications)
+        socket.emit('joinRoom', '12345'); // Replace with the actual user ID
+
+        // Listen for download notifications
+        socket.on('downloadComplete', (fileName) => {
+            const notificationList = document.getElementById('notificationList');
+            const notification = document.createElement('div');
+            notification.classList.add('notification');
+            notification.textContent = `Your download for "${fileName}" is complete!`;
+            notificationList.appendChild(notification);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <style>
+       
+    .download-btn { display: block; margin-top: 10px; text-align: center; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+    .download-btn:hover { background-color: #0056b3; }
+</style>
+<style>
+  .user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+</style>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="user-profile">
+      <img id="userAvatar" class="user-avatar" alt="User Avatar" src="/public/default-avatar.png">
+      <span id="userName" class="user-name">User Name</span>
+    </div>
+    <h2>My Dashboard</h2>
+    <ul>
+      <li><a href="/pages/home.html">Home</a></li>
+      <li><a href="/profile/profile.html">My Account</a></li>
+      <li>
+        <a href="#" id="resources-toggle">Learning-Resources <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown" id="resources-dropdown">
+          <a href="#" id="videoLink">Video</a>
+          <a href="#" id="audioLink">Audio</a>
+          <a href="#" id="pdfLink">PDF</a>
+          <a href="#" id="ebookLink">E-Book</a>
+        </div>
+      </li>
+      <li><a href="/ServerNotify/notification.html">Notification</a></li>
+      <li><a href="/index.html">Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1>Welcome to Your Dashboard</h1>
+    <p>This is where the main content will appear.</p>
+
+    <div id="contentContainer">
+
+      
+      <!-- Video Content -->
+      <div id="videoContent" class="content">
+          <h2>Video Files</h2>
+          <div class="cards">
+              <div class="card">
+                  <img src="video-cover.jpg" alt="Video Cover" class="card-cover">
+                  <h3>Intro to Programming</h3>
+                  <p>Explore our video tutorials</p>
+                  <a href="/uploads/videos/intro-to-programming.mp4" class="download-btn" download>Download</a>
+              </div>
+
+              <div class="card">
+                <img src="video-cover.jpg" alt="Video Cover" class="card-cover">
+                <h3>Intro to Programming</h3>
+                <p>Explore our video tutorials</p>
+                <a href="/uploads/videos/intro-to-programming.mp4" class="download-btn" download>Download</a>
+            </div>
+          </div>
+      </div>
+
+
+      <!-- Audio Content -->
+      <div id="audioContent" class="content">
+          <h2>Audio Files</h2>
+          <div class="cards">
+              <div class="card">
+                  <img src="audio-cover.jpg" alt="Audio Cover" class="card-cover">
+                  <h3>Programming Basics</h3>
+                  <p>Listen to audio lessons</p>
+                  <a href="/uploads/audios/programming-basics.mp3" class="download-btn" download>Download</a>
+              </div>
+          </div>
+      </div>
+
+
+      <!-- PDF Content -->
+      <div id="pdfContent" class="content">
+          <h2>PDF Files</h2>
+          <div class="cards">
+              <div class="card">
+                  <img src="pdf-cover.jpg" alt="PDF Cover" class="card-cover">
+                  <h3>Guide to Web Development</h3>
+                  <p>Download PDF resources</p>
+                  <a href="/uploads/pdfs/" class="download-btn" download>Download</a>
+              </div>
+          </div>
+      </div>
+
+
+      <!-- E-Book Content -->
+      <div id="ebookContent" class="content">
+          <h2>E-Books</h2>
+          <div class="cards">
+              <div class="card">
+                  <img src="ebook-cover.jpg" alt="E-Book Cover" class="card-cover">
+                  <h3>Learn JavaScript</h3>
+                  <p>Read our e-books</p>
+                  <a href="/uploads/ebooks/" class="download-btn" download>Download</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  </main>
+  <script>
+    // Dropdown functionality
+    const resourcesToggle = document.getElementById('resources-toggle');
+    const resourcesDropdown = document.getElementById('resources-dropdown');
+
+    resourcesToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      resourcesDropdown.style.display = 
+        resourcesDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+  </script>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
