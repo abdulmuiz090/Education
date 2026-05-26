@@ -3,147 +3,392 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Dashboard - Lenligo Learning</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-  <style>
-       
-    .download-btn { display: block; margin-top: 10px; text-align: center; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-    .download-btn:hover { background-color: #0056b3; }
-</style>
-<style>
-  .user-profile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    color: #fff;
-    border-bottom: 1px solid #ccc;
-}
-
-.user-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.user-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-}
-
-</style>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="user-profile">
-      <img id="userAvatar" class="user-avatar" alt="User Avatar" src="/public/default-avatar.png">
-      <span id="userName" class="user-name">User Name</span>
-    </div>
-    <h2>My Dashboard</h2>
-    <ul>
-      <li><a href="/pages/home.html">Home</a></li>
-      <li><a href="/profile/profile.html">My Account</a></li>
-      <li>
-        <a href="#" id="resources-toggle">Learning-Resources <i class="fas fa-chevron-down"></i></a>
-        <div class="dropdown" id="resources-dropdown">
-          <a href="#" id="videoLink">Video</a>
-          <a href="#" id="audioLink">Audio</a>
-          <a href="#" id="pdfLink">PDF</a>
-          <a href="#" id="ebookLink">E-Book</a>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="user-profile">
+          <img id="userAvatar" class="user-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="User Avatar" onerror="this.src='https://via.placeholder.com/80'">
+          <div id="userName" class="user-name">User Name</div>
+          <div class="user-role">Student</div>
         </div>
-      </li>
-      <li><a href="/ServerNotify/notification.html">Notification</a></li>
-      <li><a href="/index.html">Logout</a></li>
-    </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="main-content">
-    <h1>Welcome to Your Dashboard</h1>
-    <p>This is where the main content will appear.</p>
-
-    <div id="contentContainer">
-
-      
-      <!-- Video Content -->
-      <div id="videoContent" class="content">
-          <h2>Video Files</h2>
-          <div class="cards">
-              <div class="card">
-                  <img src="video-cover.jpg" alt="Video Cover" class="card-cover">
-                  <h3>Intro to Programming</h3>
-                  <p>Explore our video tutorials</p>
-                  <a href="/uploads/videos/intro-to-programming.mp4" class="download-btn" download>Download</a>
-              </div>
-
-              <div class="card">
-                <img src="video-cover.jpg" alt="Video Cover" class="card-cover">
-                <h3>Intro to Programming</h3>
-                <p>Explore our video tutorials</p>
-                <a href="/uploads/videos/intro-to-programming.mp4" class="download-btn" download>Download</a>
-            </div>
-          </div>
       </div>
 
+      <nav class="sidebar-nav">
+        <h2>Menu</h2>
+        <ul>
+          <li>
+            <a href="#" class="active" onclick="showContent('home')">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/profile/profile.html">
+              <i class="fas fa-user"></i>
+              <span>My Account</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="resources-toggle" onclick="toggleDropdown(event)">
+              <i class="fas fa-book"></i>
+              <span>Learning Resources</span>
+              <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.75rem;"></i>
+            </a>
+            <div class="sidebar-dropdown" id="resources-dropdown">
+              <a href="#" onclick="showContent('video'); return false;">
+                <i class="fas fa-video"></i> Videos
+              </a>
+              <a href="#" onclick="showContent('audio'); return false;">
+                <i class="fas fa-headphones"></i> Audio
+              </a>
+              <a href="#" onclick="showContent('pdf'); return false;">
+                <i class="fas fa-file-pdf"></i> PDF Materials
+              </a>
+              <a href="#" onclick="showContent('ebook'); return false;">
+                <i class="fas fa-book-open"></i> E-Books
+              </a>
+            </div>
+          </li>
+          <li>
+            <a href="/ServerNotify/notification.html">
+              <i class="fas fa-bell"></i>
+              <span>Notifications</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="handleLogout(event)">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Home Content -->
+      <div id="homeContent" class="content active">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <h1>Welcome back, <span id="welcomeName">Student</span>!</h1>
+          <p>Continue your learning journey. Track your progress and access resources.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-icon blue">
+                <i class="fas fa-book-open"></i>
+              </div>
+            </div>
+            <div class="stat-value">24</div>
+            <div class="stat-label">Courses Enrolled</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-icon green">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="stat-value">18</div>
+            <div class="stat-label">Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-icon amber">
+                <i class="fas fa-clock"></i>
+              </div>
+            </div>
+            <div class="stat-value">156h</div>
+            <div class="stat-label">Learning Time</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-icon red">
+                <i class="fas fa-fire"></i>
+              </div>
+            </div>
+            <div class="stat-value">12</div>
+            <div class="stat-label">Day Streak</div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <h2 class="section-title">
+          <i class="fas fa-history"></i>
+          Recent Activity
+        </h2>
+        <div class="activity-feed">
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-video" style="color: var(--primary-600);"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Completed "Introduction to JavaScript"</div>
+              <div class="activity-desc">2 hours ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-book" style="color: var(--success);"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Started "Advanced CSS Techniques"</div>
+              <div class="activity-desc">Yesterday at 3:45 PM</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-trophy" style="color: var(--accent-500);"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Earned "Quick Learner" Badge</div>
+              <div class="activity-desc">3 days ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Content -->
+      <div id="videoContent" class="content">
+        <h2 class="section-title">
+          <i class="fas fa-video"></i>
+          Video Tutorials
+        </h2>
+        <div class="cards">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f8c5b8f6b5c4?w=400&h=200&fit=crop" alt="Video Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Introduction to Programming</h3>
+              <p class="card-desc">Learn the fundamentals of programming with this comprehensive video course.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-clock"></i> 2h 30m</span>
+                <span><i class="fas fa-eye"></i> 1.2k views</span>
+              </div>
+              <a href="/uploads/videos/intro-to-programming.mp4" class="download-btn" download>
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop" alt="Video Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Web Development Basics</h3>
+              <p class="card-desc">Master HTML, CSS, and JavaScript with hands-on projects.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-clock"></i> 4h 15m</span>
+                <span><i class="fas fa-eye"></i> 2.5k views</span>
+              </div>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=200&fit=crop" alt="Video Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Python for Data Science</h3>
+              <p class="card-desc">Comprehensive introduction to Python programming for data analysis.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-clock"></i> 3h 45m</span>
+                <span><i class="fas fa-eye"></i> 980 views</span>
+              </div>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Audio Content -->
       <div id="audioContent" class="content">
-          <h2>Audio Files</h2>
-          <div class="cards">
-              <div class="card">
-                  <img src="audio-cover.jpg" alt="Audio Cover" class="card-cover">
-                  <h3>Programming Basics</h3>
-                  <p>Listen to audio lessons</p>
-                  <a href="/uploads/audios/programming-basics.mp3" class="download-btn" download>Download</a>
+        <h2 class="section-title">
+          <i class="fas fa-headphones"></i>
+          Audio Lessons
+        </h2>
+        <div class="cards">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc126?w=400&h=200&fit=crop" alt="Audio Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Programming Basics - Audio</h3>
+              <p class="card-desc">Listen and learn programming concepts on the go.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-clock"></i> 45m</span>
+                <span><i class="fas fa-headphones"></i> 890 plays</span>
               </div>
+              <a href="/uploads/audios/programming-basics.mp3" class="download-btn" download>
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
           </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=200&fit=crop" alt="Audio Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Career Development Tips</h3>
+              <p class="card-desc">Expert advice on building your tech career.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-clock"></i> 30m</span>
+                <span><i class="fas fa-headphones"></i> 650 plays</span>
+              </div>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-
 
       <!-- PDF Content -->
       <div id="pdfContent" class="content">
-          <h2>PDF Files</h2>
-          <div class="cards">
-              <div class="card">
-                  <img src="pdf-cover.jpg" alt="PDF Cover" class="card-cover">
-                  <h3>Guide to Web Development</h3>
-                  <p>Download PDF resources</p>
-                  <a href="/uploads/pdfs/" class="download-btn" download>Download</a>
+        <h2 class="section-title">
+          <i class="fas fa-file-pdf"></i>
+          PDF Materials
+        </h2>
+        <div class="cards">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1544716276-ca3e5f927b74?w=400&h=200&fit=crop" alt="PDF Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Guide to Web Development</h3>
+              <p class="card-desc">Complete reference guide for modern web development.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-file"></i> 45 pages</span>
+                <span><i class="fas fa-download"></i> 2.1k downloads</span>
               </div>
+              <a href="/uploads/pdfs/" class="download-btn" download>
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
           </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1456513080510-7a3d8f8fc68d?w=400&h=200&fit=crop" alt="PDF Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">JavaScript Cheatsheet</h3>
+              <p class="card-desc">Quick reference for JavaScript syntax and methods.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-file"></i> 12 pages</span>
+                <span><i class="fas fa-download"></i> 4.3k downloads</span>
+              </div>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-
 
       <!-- E-Book Content -->
       <div id="ebookContent" class="content">
-          <h2>E-Books</h2>
-          <div class="cards">
-              <div class="card">
-                  <img src="ebook-cover.jpg" alt="E-Book Cover" class="card-cover">
-                  <h3>Learn JavaScript</h3>
-                  <p>Read our e-books</p>
-                  <a href="/uploads/ebooks/" class="download-btn" download>Download</a>
+        <h2 class="section-title">
+          <i class="fas fa-book-open"></i>
+          E-Books
+        </h2>
+        <div class="cards">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=200&fit=crop" alt="E-Book Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Learn JavaScript</h3>
+              <p class="card-desc">Comprehensive e-book covering JavaScript from basics to advanced.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-book"></i> 320 pages</span>
+                <span><i class="fas fa-download"></i> 5.2k downloads</span>
               </div>
+              <a href="/uploads/ebooks/" class="download-btn" download>
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
           </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=200&fit=crop" alt="E-Book Cover" class="card-cover">
+            <div class="card-body">
+              <h3 class="card-title">Python Mastery</h3>
+              <p class="card-desc">Master Python programming with practical examples.</p>
+              <div class="card-meta">
+                <span><i class="fas fa-book"></i> 280 pages</span>
+                <span><i class="fas fa-download"></i> 3.8k downloads</span>
+              </div>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+    </main>
   </div>
-  </main>
+
+  <!-- Mobile Sidebar Toggle -->
+  <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+
   <script>
-    // Dropdown functionality
-    const resourcesToggle = document.getElementById('resources-toggle');
-    const resourcesDropdown = document.getElementById('resources-dropdown');
-
-    resourcesToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      resourcesDropdown.style.display = 
-        resourcesDropdown.style.display === 'block' ? 'none' : 'block';
+    // Load user data
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      if (user.name) {
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+      }
+      if (user.avatar) {
+        document.getElementById('userAvatar').src = user.avatar;
+      }
     });
-  </script>
 
-  <script src="dashboard.js"></script>
+    // Toggle sidebar on mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+    }
+
+    // Toggle dropdown
+    function toggleDropdown(e) {
+      e.preventDefault();
+      const dropdown = document.getElementById('resources-dropdown');
+      dropdown.classList.toggle('open');
+    }
+
+    // Show content section
+    function showContent(type) {
+      // Hide all content sections
+      document.querySelectorAll('.content').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected content
+      const contentId = type + 'Content';
+      const content = document.getElementById(contentId);
+      if (content) {
+        content.classList.add('active');
+      }
+
+      // Update active nav item
+      document.querySelectorAll('.sidebar-nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Close sidebar on mobile
+      if (window.innerWidth <= 1024) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    }
+
+    // Handle logout
+    function handleLogout(e) {
+      e.preventDefault();
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('user');
+      window.location.href = '/index.html';
+    }
+  </script>
 </body>
 </html>

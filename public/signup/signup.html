@@ -3,137 +3,426 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login/Signup</title>
+  <title>Lenligo - Login / Sign Up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
   <link rel="stylesheet" href="auth.css">
+  <style>
+    :root {
+      --primary-50: #eff6ff;
+      --primary-100: #dbeafe;
+      --primary-500: #3b82f6;
+      --primary-600: #2563eb;
+      --primary-700: #1d4ed8;
+      --primary-800: #1e40af;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --error: #ef4444;
+      --error-light: #fee2e2;
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --font-medium: 500;
+      --font-semibold: 600;
+      --font-bold: 700;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --rounded-md: 0.5rem;
+      --rounded-lg: 0.75rem;
+      --transition-fast: 150ms ease;
+    }
+  </style>
 </head>
 <body>
+  <!-- Header Navigation -->
   <header>
     <nav>
+      <a href="/index.html" style="display: flex; align-items: center; gap: 0.5rem;">
+        <img src="/image/lenligo3.png" alt="Lenligo" style="height: 32px;">
+      </a>
       <ul>
         <li><a href="/index.html">Home</a></li>
-        <li><a href="signup.html">Login</a></li>
-        <li><a href="signup.html#signup-form">Sign Up</a></li>
+        <li><a href="/signup/signup.html" class="active">Login</a></li>
+        <li><a href="/signup/signup.html#signup-form">Sign Up</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Container for Login and Signup -->
-  <div class="auth-container">
-    
-    <!-- Login Form -->
-    <div class="auth-form" id="login-form">
-      <h2>Login</h2>
-      <form action="/login" method="POST">
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" name="email" required>
-        <br>
-        <label for="login-password">Password</label>
-        <input type="password" id="login-password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-        
-        <p><a href="#">Forgot Password?</a></p>
-      </form>
-      
-      <p>Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a></p>
-    </div>
-    
-    <!-- Signup Form -->
-    <div class="auth-form" id="signup-form" style="display: none;">
-      <h2>Sign Up</h2>
-      <form action="/signup" method="POST">
-        <label for="signup-name">Full Name</label>
-        <input type="text" id="signup-name" name="name" required>
-        <br>
-        <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" name="email" required>
-        <br>
-        <label for="signup-password">Password</label>
-        <input type="password" id="signup-password" name="password" required>
-        <br>
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" id="confirm-password" name="confirm-password" required>
-        <br>
-        <label for="terms">
-          <input type="checkbox" id="terms" name="terms" required> I agree to the <a href="#">Terms & Conditions</a>
-        </label>
+  <!-- Split Screen Container -->
+  <div class="auth-wrapper">
+    <!-- Left Side - Branding -->
+    <div class="auth-branding">
+      <div class="auth-branding-content">
+        <h1>Welcome to Lenligo Learning</h1>
+        <p>Join thousands of students on their learning journey. Access quality education, expert tutors, and personalized resources.</p>
 
-        <button type="submit">Sign Up</button>
-      </form>
+        <div class="auth-features">
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Quality Education</h4>
+              <p>Learn from expert tutors with proven methodologies</p>
+            </div>
+          </div>
 
-      <p>Already have an account? <a href="#" onclick="toggleForm()">Login</a></p>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Track Progress</h4>
+              <p>Monitor your learning journey with detailed analytics</p>
+            </div>
+          </div>
+
+          <div class="auth-feature">
+            <div class="auth-feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="auth-feature-text">
+              <h4>Community Support</h4>
+              <p>Connect with peers and mentors for guidance</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- Right Side - Form -->
+    <div class="auth-form-section">
+      <!-- Login Form -->
+      <div class="auth-container" id="login-form">
+        <div class="auth-form-header">
+          <h2>Welcome back</h2>
+          <p>Sign in to continue your learning journey</p>
+        </div>
+
+        <div id="loginAlert" class="alert alert-error"></div>
+
+        <form class="auth-form" id="loginForm">
+          <div class="form-group">
+            <label class="form-label required" for="login-email">Email Address</label>
+            <input
+              type="email"
+              id="login-email"
+              name="email"
+              class="form-input"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required" for="login-password">Password</label>
+            <div class="password-input-wrapper">
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                class="form-input"
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+              >
+              <button type="button" class="password-toggle" onclick="togglePassword('login-password', this)">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+
+          <div class="form-checkbox-wrapper">
+            <input type="checkbox" id="remember" name="remember" class="form-checkbox">
+            <label class="form-checkbox-label" for="remember">Remember me for 30 days</label>
+          </div>
+
+          <button type="submit" class="btn-primary">Sign In</button>
+
+          <div class="form-divider">
+            <span>or continue with</span>
+          </div>
+
+          <button type="button" class="btn-google">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Continue with Google
+          </button>
+        </form>
+
+        <div class="auth-switch">
+          <p>Don't have an account? <a href="#" onclick="toggleForm('signup')">Create an account</a></p>
+        </div>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="auth-container" id="signup-form" style="display: none;">
+        <div class="auth-form-header">
+          <h2>Create your account</h2>
+          <p>Start your learning journey today</p>
+        </div>
+
+        <div id="signupAlert" class="alert alert-error"></div>
+
+        <form class="auth-form" id="registerForm">
+          <div class="form-group">
+            <label class="form-label required" for="signup-name">Full Name</label>
+            <input
+              type="text"
+              id="signup-name"
+              name="name"
+              class="form-input"
+              placeholder="John Doe"
+              required
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required" for="signup-email">Email Address</label>
+            <input
+              type="email"
+              id="signup-email"
+              name="email"
+              class="form-input"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required" for="signup-password">Password</label>
+            <div class="password-input-wrapper">
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                class="form-input"
+                placeholder="Create a strong password"
+                required
+                minlength="6"
+                autocomplete="new-password"
+              >
+              <button type="button" class="password-toggle" onclick="togglePassword('signup-password', this)">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--gray-500); margin-top: 0.25rem;">Minimum 6 characters</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required" for="confirm-password">Confirm Password</label>
+            <div class="password-input-wrapper">
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirm-password"
+                class="form-input"
+                placeholder="Confirm your password"
+                required
+                autocomplete="new-password"
+              >
+              <button type="button" class="password-toggle" onclick="togglePassword('confirm-password', this)">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-checkbox-wrapper">
+            <input type="checkbox" id="terms" name="terms" class="form-checkbox" required>
+            <label class="form-checkbox-label" for="terms">
+              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary">Create Account</button>
+
+          <div class="form-divider">
+            <span>or continue with</span>
+          </div>
+
+          <button type="button" class="btn-google">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Continue with Google
+          </button>
+        </form>
+
+        <div class="auth-switch">
+          <p>Already have an account? <a href="#" onclick="toggleForm('login')">Sign in</a></p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
+    // Toggle password visibility
+    function togglePassword(inputId, button) {
+      const input = document.getElementById(inputId);
+      const icon = button.querySelector('i');
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    // Toggle between login and signup forms
+    function toggleForm(formType) {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+
+      if (formType === 'signup') {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+      } else {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+      }
+
+      // Clear any alerts
+      document.getElementById('loginAlert').style.display = 'none';
+      document.getElementById('signupAlert').style.display = 'none';
+    }
+
     // Login Form Submission
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alert = document.getElementById('loginAlert');
+      const submitBtn = e.target.querySelector('.btn-primary');
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
 
-    try {
+      // Add loading state
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+
+      try {
         const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
         });
 
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new Error('Expected JSON, but received non-JSON response');
-        }
-
         const data = await response.json();
+
         if (response.ok) {
-            localStorage.setItem('jwtToken', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user)); // Save user data
-            alert('Login successful');
+          localStorage.setItem('jwtToken', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          alert.className = 'alert alert-success';
+          alert.textContent = 'Login successful! Redirecting...';
+          alert.style.display = 'block';
+
+          setTimeout(() => {
             window.location.href = '/dashboard/';
+          }, 1000);
         } else {
-            alert(`Login failed: ${data.message}`);
+          throw new Error(data.message || 'Login failed');
         }
-    } catch (error) {
-        console.error('Error:', error);
-        alert(`Error: ${error.message}`);
-    }
-});
+      } catch (error) {
+        alert.className = 'alert alert-error';
+        alert.textContent = error.message;
+        alert.style.display = 'block';
+      } finally {
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+      }
+    });
 
-// Signup Form Submission
-document.getElementById('signup-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('signup-name').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+    // Signup Form Submission
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alert = document.getElementById('signupAlert');
+      const submitBtn = e.target.querySelector('.btn-primary');
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
 
-    try {
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        alert.className = 'alert alert-error';
+        alert.textContent = 'Passwords do not match';
+        alert.style.display = 'block';
+        return;
+      }
+
+      // Add loading state
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+
+      try {
         const response = await fetch('/api/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password }),
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password }),
         });
 
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new Error('Expected JSON, but received non-JSON response');
-        }
-
         const data = await response.json();
+
         if (response.ok) {
-            localStorage.setItem('jwtToken', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user)); // Save user data
-            alert('Signup successful');
+          localStorage.setItem('jwtToken', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          alert.className = 'alert alert-success';
+          alert.textContent = 'Account created! Redirecting...';
+          alert.style.display = 'block';
+
+          setTimeout(() => {
             window.location.href = '/dashboard/';
+          }, 1000);
         } else {
-            alert(`Signup failed: ${data.message}`);
+          throw new Error(data.message || 'Signup failed');
         }
-    } catch (error) {
-        console.error('Error:', error);
-        alert(`Error: ${error.message}`);
+      } catch (error) {
+        alert.className = 'alert alert-error';
+        alert.textContent = error.message;
+        alert.style.display = 'block';
+      } finally {
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Check URL hash to show signup form
+    if (window.location.hash === '#signup-form') {
+      toggleForm('signup');
     }
-});
-</script>
-  <script src="auth.js"></script>
+  </script>
 </body>
 </html>

@@ -1,50 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="profile.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Settings - Lenligo Learning</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-    <style>
+  <div class="profile-container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="/dashboard/dashboard.html">
+        <i class="fas fa-arrow-left"></i> Dashboard
+      </a>
+      <span style="color: var(--gray-400);">/</span>
+      <span>Profile Settings</span>
+    </div>
 
-        .image{
-            justify-self: center;
-            align-self: center;
-        }
-        .image img{
-            border: 2px solid greenyellow;
-        }
-    </style>
-    <header>
-        <h1>Welcome to Your Profile</h1>
-    </header>
-    <main>
-        <a style="text-decoration: none; float: left;" href="/dashboard/dashboard.html">Go back__...</a>
-        <div class="image" id="profile-preview">
-           
-            <h2>My Profile Picture</h2>
-            
-            <img id="profileImage" src="" alt="Profile Picture" style="max-width: 170px; height: 170px; border-radius: 50%;">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-cover"></div>
+      <div class="profile-avatar-section">
+        <div class="avatar-wrapper">
+          <img id="profileImage" class="profile-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="Profile Picture" onerror="this.src='https://via.placeholder.com/140'">
+          <label for="avatar-upload" class="avatar-edit-btn" title="Change photo">
+            <i class="fas fa-camera"></i>
+          </label>
+          <input type="file" id="avatar-upload" accept="image/*" style="display: none;" onchange="previewAvatar(this)">
         </div>
+        <div class="profile-info">
+          <h1 class="profile-name" id="displayName">User Name</h1>
+          <p class="profile-email" id="displayEmail">user@example.com</p>
+          <div class="profile-badges">
+            <span class="badge">
+              <i class="fas fa-graduation-cap"></i>
+              Student
+            </span>
+            <span class="badge">
+              <i class="fas fa-star"></i>
+              Premium
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="profile-tabs">
+        <button class="tab-btn active" onclick="switchTab('profile')">
+          <i class="fas fa-user" style="margin-right: 0.5rem;"></i>
+          Profile
+        </button>
+        <button class="tab-btn" onclick="switchTab('security')">
+          <i class="fas fa-lock" style="margin-right: 0.5rem;"></i>
+          Security
+        </button>
+        <button class="tab-btn" onclick="switchTab('notifications')">
+          <i class="fas fa-bell" style="margin-right: 0.5rem;"></i>
+          Notifications
+        </button>
+      </div>
+    </div>
+
+    <!-- Profile Tab Content -->
+    <div id="profile-tab" class="tab-content active">
+      <div class="profile-card">
+        <h2 class="card-title">Personal Information</h2>
+
+        <div id="profileAlert" class="alert" style="display: none;"></div>
+
         <form id="profileForm" enctype="multipart/form-data">
-            <label for="signup-name">Full Name</label>
-            <input type="text" id="signup-name" name="name" required>
-            <br>
-            <label for="signup-email">Email</label>
-            <input type="email" id="signup-email" name="email" required>
-            <br>
-            <label for="bio">Bio:</label>
-            <textarea id="bio" name="bio"></textarea>
-            <br>
-            <label for="avatar">Upload Profile Picture:</label>
-            <input type="file" id="avatar" name="avatar" accept="image/*">
-            <br>
-            <button type="submit">Update Profile</button>
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label required" for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" name="name" class="form-input" placeholder="Enter your full name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label required" for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" name="email" class="form-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bio">Bio</label>
+              <textarea id="bio" name="bio" class="form-textarea" placeholder="Tell us about yourself..."></textarea>
+              <span class="form-hint">Brief description for your profile. Max 200 characters.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Profile Picture</label>
+              <label class="file-upload">
+                <div class="file-upload-icon">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="file-upload-text">Click to upload or drag and drop</div>
+                <div class="file-upload-hint">PNG, JPG up to 5MB</div>
+                <input type="file" id="avatar" name="avatar" accept="image/*">
+              </label>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Save Changes
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">
+              Cancel
+            </button>
+          </div>
         </form>
-        
-    </main>
-    <script src="profile.js"></script>
+      </div>
+    </div>
+
+    <!-- Security Tab Content -->
+    <div id="security-tab" class="tab-content">
+      <div class="profile-card">
+        <h2 class="card-title">Change Password</h2>
+
+        <div id="securityAlert" class="alert" style="display: none;"></div>
+
+        <form id="passwordForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label required" for="current-password">Current Password</label>
+              <input type="password" id="current-password" name="currentPassword" class="form-input" placeholder="Enter current password" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label required" for="new-password">New Password</label>
+                <input type="password" id="new-password" name="newPassword" class="form-input" placeholder="Enter new password" required minlength="6">
+              </div>
+              <div class="form-group">
+                <label class="form-label required" for="confirm-new-password">Confirm New Password</label>
+                <input type="password" id="confirm-new-password" name="confirmPassword" class="form-input" placeholder="Confirm new password" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-lock"></i>
+              Update Password
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="profile-card" style="margin-top: 1.5rem;">
+        <h2 class="card-title">Account Actions</h2>
+        <div class="settings-item">
+          <div class="settings-info">
+            <h4>Delete Account</h4>
+            <p>Permanently delete your account and all associated data</p>
+          </div>
+          <button class="btn btn-secondary" style="color: var(--error); border-color: var(--error);">
+            <i class="fas fa-trash-alt"></i>
+            Delete Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Tab Content -->
+    <div id="notifications-tab" class="tab-content">
+      <div class="profile-card">
+        <h2 class="card-title">Notification Preferences</h2>
+
+        <div class="settings-item">
+          <div class="settings-info">
+            <h4>Email Notifications</h4>
+            <p>Receive email updates about your courses and progress</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked id="email-notif">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-info">
+            <h4>Push Notifications</h4>
+            <p>Receive push notifications for important updates</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="push-notif">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-info">
+            <h4>Weekly Digest</h4>
+            <p>Get a weekly summary of your learning progress</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked id="weekly-digest">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-info">
+            <h4>Marketing Emails</h4>
+            <p>Receive promotional content and special offers</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="marketing-emails">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Load user data on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+      if (user.name) {
+        document.getElementById('displayName').textContent = user.name;
+        document.getElementById('signup-name').value = user.name;
+      }
+
+      if (user.email) {
+        document.getElementById('displayEmail').textContent = user.email;
+        document.getElementById('signup-email').value = user.email;
+      }
+
+      if (user.avatar) {
+        document.getElementById('profileImage').src = user.avatar;
+      }
+
+      if (user.bio) {
+        document.getElementById('bio').value = user.bio;
+      }
+    });
+
+    // Switch tabs
+    function switchTab(tabName) {
+      // Update tab buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+
+      // Update tab content
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabName + '-tab').classList.add('active');
+    }
+
+    // Preview avatar before upload
+    function previewAvatar(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profileImage').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Profile form submission
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const alert = document.getElementById('profileAlert');
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const bio = document.getElementById('bio').value;
+
+      // Update local storage
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      user.name = name;
+      user.email = email;
+      user.bio = bio;
+      localStorage.setItem('user', JSON.stringify(user));
+
+      // Update display
+      document.getElementById('displayName').textContent = name;
+      document.getElementById('displayEmail').textContent = email;
+
+      // Show success message
+      alert.className = 'alert alert-success';
+      alert.textContent = 'Profile updated successfully!';
+      alert.style.display = 'block';
+
+      setTimeout(() => {
+        alert.style.display = 'none';
+      }, 3000);
+    });
+
+    // Password form submission
+    document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const alert = document.getElementById('securityAlert');
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-new-password').value;
+
+      if (newPassword !== confirmPassword) {
+        alert.className = 'alert alert-error';
+        alert.textContent = 'Passwords do not match!';
+        alert.style.display = 'block';
+        return;
+      }
+
+      // Show success message
+      alert.className = 'alert alert-success';
+      alert.textContent = 'Password updated successfully!';
+      alert.style.display = 'block';
+
+      // Clear form
+      document.getElementById('passwordForm').reset();
+
+      setTimeout(() => {
+        alert.style.display = 'none';
+      }, 3000);
+    });
+
+    // Reset form
+    function resetForm() {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      document.getElementById('signup-name').value = user.name || '';
+      document.getElementById('signup-email').value = user.email || '';
+      document.getElementById('bio').value = user.bio || '';
+    }
+  </script>
 </body>
 </html>
