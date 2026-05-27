@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const http = require('http'); // Import http to create the server
 const { Server } = require('socket.io'); // Import Socket.IO
-const connectDB = require('./config/db');
+const { connectDB, setupNotificationHandler } = require('./config/db');
 const fs = require('fs');
 const path = require('path'); // Import the path module
 const authRoutes = require('./routes/authRoutes');
