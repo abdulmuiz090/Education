@@ -40,13 +40,13 @@ app.use('/uploads', express.static(uploadsFolderPath));
 app.use('/api', authRoutes);
 app.use('/users', userRoutes);
 
-// Dashboard Route
-app.get('/dashboard/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'dashboard', 'dashboard.html')); // Correct path
+// Dashboard Route (serve HTML file without authentication required)
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dashboard', 'dashboard.html'));
 });
 
-// Profile Route
-app.get('/profile/', (req, res) => {
+// Profile Route (serve HTML file without authentication required)
+app.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'profile', 'profile.html'));
 });
 
